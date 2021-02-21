@@ -12,7 +12,7 @@ public class TaskController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getTasks")
     public List<TaskDto> getTasks(){
-        return ArrayList<>();
+        return new ArrayList<>();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getTask")
@@ -33,4 +33,6 @@ public class TaskController {
     public void createTask(TaskDto taskDto) {
 
     }
+
+
 }

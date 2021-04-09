@@ -44,20 +44,26 @@ public class TrelloClient {
                 .build()
                 .encode()
                 .toUri();
-
-
         try {
             TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
-            return Optional.ofNullable(boardsResponse)
-                    .map(Arrays::asList)
-                    .orElse(Collections.emptyList())
-                    .stream()
-                    .filter(p -> Objects.nonNull(p.getId()) && Objects.nonNull(p.getName()))
-                    .collect(Collectors.toList());
+            return Arrays.asList(Optional.ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptyList();
+            return new ArrayList<>();
         }
+
+//        try {
+//            TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
+//            return Optional.ofNullable(boardsResponse)
+//                    .map(Arrays::asList)
+//                    .orElse(Collections.emptyList())
+//                    .stream()
+//                    .filter(p -> Objects.nonNull(p.getId()) && Objects.nonNull(p.getName()))
+//                    .collect(Collectors.toList());
+//        } catch (RestClientException e) {
+//            LOGGER.error(e.getMessage(), e);
+//            return Collections.emptyList();
+//        }
 
     }
     public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto) {

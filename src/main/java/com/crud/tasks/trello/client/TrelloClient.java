@@ -52,6 +52,9 @@ public class TrelloClient {
                 .queryParam("desc", trelloCardDto.getDescription())
                 .queryParam("pos", trelloCardDto.getPos())
                 .queryParam("idList", trelloCardDto.getListId())
+                .queryParam("badges", trelloCardDto.getBadges())
+//                .queryParam("attachment", trelloCardDto.getBadges().getAttachmentByType())
+//                .queryParam("trello", trelloCardDto.getBadges().getAttachmentByType().getTrello())
                 .build()
                 .encode()
                 .toUri();
